@@ -1,4 +1,5 @@
 # Puts the helper functions which are used for multiple problems
+
 def find_prime_nos(prime_nos, n) -> list:
     """
     Given an initial list of prime numbers, find the other prime numbers up to n
@@ -13,6 +14,30 @@ def find_prime_nos(prime_nos, n) -> list:
                 break
         #print(possible)
         if possible:
+            prime_nos.append(i)
+    return prime_nos
+
+def find_prime_nos2(n:int) -> list:
+    """
+    Find all prime numbers up to n.
+    Use the Sieve of Eratosthenes method.
+    https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
+    """
+    import math
+    if n <= 1:
+        return [0]
+    A = [0, 0] + (n-1)*[1] 
+    sqrt_n = math.sqrt(n)
+    for i in range(2, math.floor(sqrt_n)+1):
+        if A[i]:
+            #print("i is %s" %(i))
+            for j in range(2*i, n+1, i):
+                #print("j is %s" %(j))
+                if i != j:
+                    A[j] = 0
+    prime_nos = []
+    for i in range(len(A)):
+        if A[i] == 1:
             prime_nos.append(i)
     return prime_nos
 
